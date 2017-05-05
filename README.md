@@ -1,4 +1,4 @@
-# Serverless SAM
+# Serverless SAM [![Build Status](https://travis-ci.org/SAPessi/serverless-sam.svg?branch=master)](https://travis-ci.org/SAPessi/serverless-sam)
 Serverless-sam is a plugin for the [Serverless framework](https://serverless.com) that makes it easy to create [Serverless Application Model (SAM)](https://github.com/awslabs/serverless-application-model) templates from an application. The plugin adds the `sam` command to the serverless cli.
 
 # Installation
