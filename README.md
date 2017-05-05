@@ -5,7 +5,7 @@ Serverless-sam is a plugin for the [Serverless framework](https://serverless.com
 From your Serverless application directory, use `npm` to install the plugin:
 
 ```
-$ npm install --save-dev servereless-sam
+$ npm install --save-dev serverless-sam
 ```
 
 Once you have installed the plugin, add it to your `serverless.yml` file in the `plugins` sections.
