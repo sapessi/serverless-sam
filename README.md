@@ -24,7 +24,7 @@ frameworkVersion: ">=1.1.0 <2.0.0"
 Use the `sam export` command to generate a SAM definition from your service. Use the `--output` or `-o` option to set the name for the SAM template file.
 
 ```
-$ aws sam export --output ./sam-template.yml
+$ serverless sam export --output ./sam-template.yml
 ```
 
 Once you have exported the template, you can follow the standard procedure with the [AWS CLI](https://aws.amazon.com/cli/) to deploy the service. First, the package command reads the generated templates, uploads the packaged functions to an S3 bucket for deployment, and generates an output template with the S3 links to the function packages.
