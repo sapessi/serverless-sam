@@ -152,6 +152,12 @@ class SamPlugin {
     
     this.serverless.variables.populateService(this.serverless.pluginManager.cliOptions);
 
+    // remove deployment bucket settings before we start working on the template. We do not need to trigger
+    // a deployment or any calls to S3
+    if (this.serverless.service.provider.deploymentBucket) {
+      delete this.serverless.service.provider.deploymentBucket;
+    }
+    
     return new BbPromise.bind(plugin)
       .then(plugin.generateCoreTemplate)
       .then(plugin.mergeIamTemplates)
