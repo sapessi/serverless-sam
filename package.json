@@ -1,0 +1,45 @@
+{
+  "name": "serverless-sam",
+  "version": "0.0.1",
+  "description": "Serverless framework plugin to export AWS SAM templates for a service",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SAPessi/serverless-sam.git"
+  },
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/SAPessi/serverless-sam/issues"
+  },
+  "homepage": "https://github.com/SAPessi/serverless-sam#readme",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "js-yaml": "^3.8.3",
+    "randomstring": "^1.1.5"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0",
+    "download": "^6.0.0",
+    "fs-extra": "^3.0.0",
+    "mocha": "^3.3.0",
+    "rimraf": "^2.6.1",
+    "serverless": "^1.11.0"
+  },
+  "scripts": {
+    "test": "mocha --reporter spec --timeout 0 $(find . -name '*.test.js' -not -path './node_modules/*')"
+  },
+  "author": "Stefano Buliani (@sapessi)",
+  "keywords": [
+    "Amazon API Gateway",
+    "API Gateway",
+    "AWS",
+    "Lambda",
+    "Serverless Application Model",
+    "SAM",
+    "Deployment",
+    "Serverless",
+    "Framework",
+    "Plugin"
+  ]
+}
