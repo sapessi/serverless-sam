@@ -61,6 +61,14 @@ class SamPlugin {
                 required: true,
                 shortcut: 'o',
               },
+              codeuri: {
+                usage:
+                'Specify CodeUri for package '
+                + '(e.g. "--codeuri s3://deploy-bucket/function.zip")',
+                required: false,
+                shortcut: 'u',
+                default: null
+              },
             },
           }
         }
@@ -203,7 +211,7 @@ class SamPlugin {
     return new BbPromise((resolve, reject) => {
       this.serverless.cli.log('Export:');
       try {
-        this.samTemplate = this.samGenerator.generate();
+        this.samTemplate = this.samGenerator.generate(this.serverless.providers.aws.options.codeuri);
         resolve(this.samTemplate);
       } catch (err) {
         reject(err);
