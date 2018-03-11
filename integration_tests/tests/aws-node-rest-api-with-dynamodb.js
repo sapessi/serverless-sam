@@ -8,7 +8,7 @@ const fs = require('fs');
 
 const serverlessTemplate = yaml.safeLoad(fs.readFileSync(__dirname + path.sep + ".." + path.sep + "serverless.yml"));
 const samTemplate = yaml.safeLoad(fs.readFileSync(__dirname + path.sep + ".." + path.sep + "sam.yml"));
-                
+
 
 describe("Tests for " + __filename, () => {
     it("Imported the DynamoDB table resource", () => {
@@ -28,7 +28,7 @@ describe("Tests for " + __filename, () => {
     });
 
     it("Lambda runtime is Node JS", () => {
-      expect(samTemplate.Resources.Create.Properties.Runtime).to.be.equal("nodejs4.3");
+      assert.include(samTemplate.Resources.Create.Properties.Runtime, 'nodejs6');
     });
 
     it("Lambda execution policy was replicated in each function", () => {
