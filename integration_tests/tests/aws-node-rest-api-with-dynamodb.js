@@ -3,6 +3,7 @@
 const chai = require("chai");
 const expect = chai.expect;
 const yaml = require('js-yaml');
+const assert = chai.assert;
 const path = require('path');
 const fs = require('fs');
 
@@ -28,7 +29,8 @@ describe("Tests for " + __filename, () => {
     });
 
     it("Lambda runtime is Node JS", () => {
-      assert.include(samTemplate.Resources.Create.Properties.Runtime, 'nodejs6');
+      let runtime = samTemplate.Resources.Create.Properties.Runtime;
+      assert(runtime.includes('nodejs6') || runtime.includes('nodejs4'), 'Version 4 & 6 of NodeJS');
     });
 
     it("Lambda execution policy was replicated in each function", () => {
