@@ -197,7 +197,7 @@ class SamPlugin {
   }
 
   /**
-   * Sames the generated SAM template in the local samTemplate variable
+   * Saves the generated SAM template in the local samTemplate variable
    */
   exportSam() {
     return new BbPromise((resolve, reject) => {

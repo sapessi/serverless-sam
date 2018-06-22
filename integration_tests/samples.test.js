@@ -6,6 +6,7 @@ const chai = require("chai");
 const expect = chai.expect;
 const Mocha = require('mocha');
 
+const os = require('os');
 const path = require('path');
 const fs = require('fs');
 const fse = require('fs-extra')
@@ -18,11 +19,11 @@ const rimraf = BbPromise.promisify(require('rimraf'));
 const wget = BbPromise.promisify(require('download'));
 
 // const REPO_FOLDER = path.resolve(__dirname + path.sep + "tmp");
-const REPO_FOLDER = path.resolve(path.sep + "tmp" + path.sep + "test_repos");
+const REPO_FOLDER = path.resolve(os.tmpdir() + path.sep + "test_repos"); //path.resolve(path.sep + "tmp" + path.sep + "test_repos");
 
 let TEST_REPOS = []
 
-for (let test of require('fs').readdirSync(__dirname + path.sep + "tests" + path.sep)) {
+for (let test of fs.readdirSync(__dirname + path.sep + "tests" + path.sep)) {
   TEST_REPOS.push(test.replace('.js', ''));
 }
 
@@ -32,17 +33,21 @@ describe("Running integration tests: ", () => {
     .then(rimraf(REPO_FOLDER))
     //.then(createFolder(REPO_FOLDER))
     .then(wget("https://github.com/serverless/examples/archive/master.zip", REPO_FOLDER, { extract: true, strip: 1 }))
-    .then(() => { return TEST_REPOS; })
+    .then(() => { 
+      const pluginSourceFolder = __dirname + path.sep + ".." + path.sep;
+      const pluginFolder  = REPO_FOLDER + path.sep + "serverless-sam";
+      fse.copySync(pluginSourceFolder, pluginFolder); 
+      return TEST_REPOS; 
+    })
     .each((repo) => {
         return new BbPromise((testResolve, testReject) => {
           const repoFolder = REPO_FOLDER + path.sep + repo;
-          const pluginFolder = __dirname + path.sep + ".." + path.sep;
+          const pluginFolder  = REPO_FOLDER + path.sep + "serverless-sam";
           const serverlessFile = repoFolder + path.sep + "serverless.yml";
           const samFile = repoFolder + path.sep + "sam-template.yml";
-            //exec("npm --prefix " + repoFolder + " install " + repoFolder)
-            //.then(exec("npm --prefix " + repoFolder + " install " + pluginFolder))
-          return exec("npm --prefix " + repoFolder + " install " + repoFolder)
-            .then(() => { return exec("npm --prefix " + repoFolder + " install " + pluginFolder) })
+          
+          return exec("npm install", {cwd: repoFolder})
+            .then(() => { return exec("npm install --no-save " + pluginFolder, {cwd: repoFolder}) })
             .then(()  => {
               return readFile(serverlessFile)
             })

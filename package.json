@@ -1,6 +1,6 @@
 {
   "name": "serverless-sam",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "description": "Serverless framework plugin to export AWS SAM templates for a service",
   "main": "index.js",
   "repository": {
@@ -15,6 +15,7 @@
   "dependencies": {
     "bluebird": "^3.5.0",
     "js-yaml": "^3.8.3",
+    "npm": "^5.7.1",
     "randomstring": "^1.1.5"
   },
   "devDependencies": {
