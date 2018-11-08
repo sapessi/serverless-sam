@@ -1,6 +1,6 @@
 {
   "name": "serverless-sam",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Serverless framework plugin to export AWS SAM templates for a service",
   "main": "index.js",
   "repository": {
