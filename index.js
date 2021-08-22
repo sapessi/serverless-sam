@@ -60,6 +60,7 @@ class SamPlugin {
                   + '(e.g. "--output ./sam-template.yml" or "-o ./sam-template.yml")',
                 required: true,
                 shortcut: 'o',
+                type: 'string',
               },
             },
           }
